@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet'); // Ensure helmet is installed
 const rateLimit = require('express-rate-limit'); // Ensure express-rate-limit is installed
-const connectDB = require('./pomodoro-lofi-app/backend/config/db'); // Correct path to db.js
+const connectDB = require('./backend/config/db'); // Correct path to db.js
 
 const app = express();
 
@@ -13,16 +13,16 @@ connectDB();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'pomodoro-lofi-app/frontend'))); // Serve static files from the nested frontend directory
+app.use(express.static(path.join(__dirname))); // Serve static files from the root directory
 app.use(helmet()); // Add security headers
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 })); // Rate limiting
 
 console.log("Current directory:", __dirname); // Log current directory
 
-const timerRoutes = require('./pomodoro-lofi-app/backend/routes/timerRoutes'); // Correct path to timerRoutes.js
+const timerRoutes = require('./backend/routes/timerRoutes'); // Correct path to timerRoutes.js
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pomodoro-lofi-app/frontend', 'index.html')); // Serve the index.html file
+    res.sendFile(path.join(__dirname, 'index.html')); // Serve the index.html file
 });
 
 app.use('/api', timerRoutes);
