@@ -1,0 +1,117 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#background-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    background-size: contain;
+}
+
+.interactive-section {
+    position: relative;
+    transform: translateY(-55%); /* Adjust this value to move the section higher or lower */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#pomodoroDurations {
+    margin-bottom: 20px;
+}
+
+#timer {
+    font-size: 72px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+}
+
+.topButtons {
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #fff;
+    border-radius: 500px;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    padding: 10px 20px;
+    font-size: 14px;
+    text-transform: lowercase;
+    font-family: "Space Grotesk", sans-serif;
+     cursor: pointer;
+}
+
+.topButtons:active, .topButtons:focus, .topButtons.active {
+    background-color: #fff;
+    color: #000;
+}
+
+.startButton {
+    width: 100px;
+    display: inline-block;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    background-color: white;
+    border: 1px solid #fff;
+    border-radius: 500px;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-transform: lowercase;
+    font-family: "Space Grotesk", sans-serif;
+    cursor: pointer;
+}
+
+.startButton:active  {
+    transform: translateY(2px);
+}
+
+/* .startButton:active, .startButton:focus, .startButton.active {
+    background-color: #fff;
+    color: #000;
+} */
+
+.iconButton {
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    border-radius: 500px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-transform: lowercase;
+    font-family: "Space Grotesk", sans-serif;
+    cursor: pointer;
+}
+
+
+.iconButton:active  {
+    transform: translateY(2px);
+}
+
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

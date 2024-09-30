@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Pomodoro Timer</title>
+</head>
+<body>
+    <video id="background-video" autoplay muted loop>
+        <source src="videos/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <div class="interactive-section">
+        <div id="pomodoroDurations"> 
+            <button class="topButtons" id="pomodoro">Pomodoro</button>
+            <button class="topButtons" id="shortBreak">Short Break</button>
+            <button class="topButtons" id="longBreak">Long Break</button>
+        </div>
+        <div id="timer">25:00</div>
+        <div class="buttonContainer">
+            <button class="startButton" id="start">Start</button>
+            <button class="iconButton" id="reset">
+                <span class="material-icons">refresh</span>
+            </button>
+        </div>
+    </div>
+    
+
+    <audio id="play-music" src="https://pub0101.101.ru/stream/pro/aac/64/358" preload="auto" loop ></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
