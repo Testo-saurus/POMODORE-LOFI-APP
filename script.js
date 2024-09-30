@@ -1,13 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
     let timer;
     let isRunning = false;
-    let isPaused = false;
     let timeLeft = 1500; // Default to 25 minutes
     let currentMode = 'pomodoro'; // Track the current mode
 
     const timerDisplay = document.getElementById('timer');
     const playMusic = document.getElementById('play-music');
     const startButton = document.getElementById('start');
+    const favicon = document.getElementById('dynamic-favicon'); // Select the favicon element
+
+    // Function to update the favicon
+    function updateFavicon(timeLeft) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 64;
+        canvas.height = 64;
+        const context = canvas.getContext('2d');
+
+        // Draw background
+        context.fillStyle = '#f0f0f0';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw text
+        context.fillStyle = '#000';
+        context.font = '48px Arial';
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        const minutes = Math.floor(timeLeft / 60);
+        context.fillText(minutes, canvas.width / 2, canvas.height / 2);
+
+        // Update favicon
+        favicon.href = canvas.toDataURL('image/png');
+    }
 
     // Ensure the music starts playing when the user interacts with the page
     startButton.addEventListener('click', () => {
@@ -25,8 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function startTimer() {
         if (!isRunning) {
             isRunning = true;
-            isPaused = false;
-            startButton.textContent = 'Pause';
             updateDisplay(); // Update the display immediately
             timer = setInterval(() => {
                 if (timeLeft <= 0) {
@@ -39,44 +60,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 timeLeft--;
                 updateDisplay();
+                updateFavicon(timeLeft); // Update the favicon with the remaining time
             }, 1000);
         }
     }
 
     function pauseTimer() {
-        if (isRunning && !isPaused) {
-            clearInterval(timer);
-            isPaused = true;
-            playMusic.pause();
-            startButton.textContent = 'Start';
-        } else if (isRunning && isPaused) {
-            isPaused = false;
-            startButton.textContent = 'Pause';
-            playMusic.play().catch(error => {
-                console.error('Error attempting to play music:', error);
-            });
-            timer = setInterval(() => {
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    isRunning = false;
-                    playMusic.pause();
-                    startButton.textContent = 'Start';
-                    alert("Time's up!");
-                    return;
-                }
-                timeLeft--;
-                updateDisplay();
-            }, 1000);
-        }
+        clearInterval(timer);
+        isRunning = false;
     }
 
     function resetTimer() {
         clearInterval(timer);
         isRunning = false;
-        isPaused = false;
         setInitialTime();
         updateDisplay();
-        startButton.textContent = 'Start';
+        updateFavicon(timeLeft); // Update the favicon with the initial time
     }
 
     function updateDisplay() {
@@ -102,12 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function setTimer(duration, mode) {
         clearInterval(timer);
         isRunning = false;
-        isPaused = false;
         currentMode = mode;
         timeLeft = duration;
         updateDisplay();
+        updateFavicon(timeLeft); // Update the favicon with the new time
         highlightModeButton(mode);
-        startButton.textContent = 'Start';
     }
 
     function highlightModeButton(mode) {
@@ -127,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial display
     updateDisplay();
+    updateFavicon(timeLeft); // Update the favicon with the initial time
     highlightModeButton(currentMode);
 
     // Ensure the background video plays correctly
