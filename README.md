@@ -6,7 +6,7 @@
 
 A beautiful web-based Pomodoro timer with curated lofi radio stations and brainwave frequencies to enhance your focus and creativity.
 
-[🚀 Live Demo](#) | [📖 Documentation](#features) | [🎵 Radio Stations](#radio-stations)
+[🚀 Live Demo](https://testo-saurus.github.io/POMODORE-LOFI-APP/) | [🎵 Radio Stations](#radio-stations)
 
 ---
 
