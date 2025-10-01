@@ -126,7 +126,7 @@ All stations are **ad-free**, **high-quality streams** from respected broadcaste
 
 | Station                     | Type        | URL                                            | Support                                                        |
 | --------------------------- | ----------- | ---------------------------------------------- | -------------------------------------------------------------- |
-| **FluxFM - Chillhop**       | Lofi        | [fluxfm.de](https://www.fluxfm.de)             | [Donate](https://www.fluxfm.de/support)                        |
+| **101.ru - Lofi Hip Hop**   | Lofi        | [101.ru](https://101.ru)                       | -                                                              |
 | **Nightride FM**            | Lofi        | [nightride.fm](https://nightride.fm)           | -                                                              |
 | **SomaFM - Groove Salad**   | Lofi        | [somafm.com](https://somafm.com)               | [Support SomaFM](https://somafm.com/support/)                  |
 | **SomaFM - Drone Zone**     | Alpha Waves | [somafm.com](https://somafm.com)               | [Support SomaFM](https://somafm.com/support/)                  |

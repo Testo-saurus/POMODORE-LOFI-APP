@@ -26,28 +26,34 @@
       <div id="timer">25:00</div>
       <div class="buttonContainer">
         <button class="startButton" id="start">Start</button>
-        <button class="iconButton" id="reset">
+        <button class="resetButton" id="reset">
           <span class="material-icons">refresh</span>
+          <span class="reset-text">Reset</span>
         </button>
       </div>
     </div>
 
-    <!-- Redesigned audio controls -->
-    <div class="audio-controls">
-      <div class="audio-left">
-        <div class="sound-visualizer paused" id="sound-visualizer">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-        <div class="station-info">
-          <span class="live-badge" id="live-badge">● LIVE</span>
-          <span id="station-name">ChilledCow - Lofi Hip Hop Beats</span>
-        </div>
+    <!-- Floating audio toggle (always visible) -->
+    <div class="audio-floating-controls" id="audio-floating-controls">
+      <div class="sound-visualizer paused" id="sound-visualizer">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
       </div>
+      <button
+        class="audio-toggle-btn"
+        id="audio-toggle"
+        title="Expand Audio Controls"
+      >
+        <span class="material-icons">expand_less</span>
+      </button>
+    </div>
 
-      <div class="audio-right">
+    <!-- Audio controls (collapsible) - REARRANGED LAYOUT -->
+    <div class="audio-controls" id="audio-controls">
+      <!-- LEFT: Music Controls -->
+      <div class="audio-left">
         <div class="station-controls">
           <button
             class="control-btn"
@@ -56,11 +62,29 @@
           >
             <span class="material-icons">skip_previous</span>
           </button>
+          <button
+            class="control-btn play-pause-btn"
+            id="play-pause-music"
+            title="Play Music"
+          >
+            <span class="material-icons">play_arrow</span>
+          </button>
           <button class="control-btn" id="next-station" title="Next Station">
             <span class="material-icons">skip_next</span>
           </button>
         </div>
+      </div>
 
+      <!-- CENTER: Station Info -->
+      <div class="audio-center">
+        <div class="station-info">
+          <span id="station-name">101.ru - Lofi Hip Hop</span>
+          <span class="live-badge" id="live-badge">● LIVE</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: Volume Controls -->
+      <div class="audio-right">
         <div class="volume-controls">
           <span class="material-icons volume-icon">volume_up</span>
           <input type="range" id="volume-slider" min="0" max="100" value="50" />
@@ -74,7 +98,7 @@
       <span class="material-icons">info_outline</span>
     </button>
 
-    <!-- Credits Modal (Hidden by default) -->
+    <!-- Credits Modal -->
     <div class="credits-overlay" id="credits-overlay">
       <div class="credits-modal">
         <button class="close-btn" id="close-credits">
@@ -87,10 +111,8 @@
         <h3>Radio Stations</h3>
         <ul class="station-credits">
           <li>
-            <strong>FluxFM - Chillhop</strong><br />
-            <a href="https://www.fluxfm.de" target="_blank" rel="noopener"
-              >fluxfm.de</a
-            >
+            <strong>101.ru - Lofi Hip Hop</strong><br />
+            <a href="https://101.ru" target="_blank" rel="noopener">101.ru</a>
           </li>
           <li>
             <strong>Nightride FM</strong><br />

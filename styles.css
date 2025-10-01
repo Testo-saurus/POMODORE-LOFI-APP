@@ -50,8 +50,7 @@ body {
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid #fff;
   border-radius: 500px;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
   padding: 10px 20px;
   font-size: 14px;
   text-transform: lowercase;
@@ -75,8 +74,7 @@ body {
   background-color: white;
   border: 1px solid #fff;
   border-radius: 500px;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
   padding: 10px 20px;
   font-size: 16px;
   text-transform: lowercase;
@@ -88,77 +86,64 @@ body {
   transform: translateY(2px);
 }
 
-.iconButton {
-  display: inline-block;
-  color: #fff;
-  text-align: center;
-  vertical-align: middle;
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  border-radius: 500px;
-  padding: 10px 20px;
-  font-size: 16px;
-  text-transform: lowercase;
-  font-family: "Space Grotesk", sans-serif;
-  cursor: pointer;
-}
-
-.iconButton:active {
-  transform: translateY(2px);
-}
-
 .buttonContainer {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
-/* Redesigned Audio Controls - Stylish Card */
-.audio-controls {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.7),
-    rgba(30, 30, 30, 0.6)
-  );
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 18px 24px;
-  display: flex;
-  justify-content: space-between;
+/* Reset Button */
+.resetButton {
+  display: inline-flex;
   align-items: center;
-  gap: 30px;
-  z-index: 10;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
-  min-width: 500px;
-  max-width: 650px;
+  gap: 6px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 500px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-family: "Space Grotesk", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* Left side - Visualizer + Station Info */
-.audio-left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex: 1;
+.resetButton:hover:not(.disabled) {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
-/* Sound Visualizer - Enhanced 4-bar design */
+.resetButton:active:not(.disabled) {
+  transform: translateY(2px);
+}
+
+.resetButton.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.resetButton .material-icons {
+  font-size: 18px;
+}
+
+.reset-text {
+  font-size: 14px;
+  text-transform: lowercase;
+}
+
+/* Sound Visualizer */
 .sound-visualizer {
   display: flex;
   align-items: flex-end;
-  gap: 4px;
-  height: 24px;
+  gap: 3px;
+  height: 20px;
   padding: 2px;
-  min-width: 28px; /* Fixed width to prevent layout shifts: 4 bars × 4px + 3 gaps × 4px + 4px padding */
-  width: 28px;
+  width: 24px;
 }
 
 .sound-visualizer .bar {
-  width: 4px;
+  width: 3px;
   background: linear-gradient(to top, #4a90e2, #7ec8ff);
   border-radius: 3px;
   transition: all 0.15s ease;
@@ -179,15 +164,12 @@ body {
 .sound-visualizer.playing .bar:nth-child(1) {
   animation-delay: 0s;
 }
-
 .sound-visualizer.playing .bar:nth-child(2) {
   animation-delay: 0.15s;
 }
-
 .sound-visualizer.playing .bar:nth-child(3) {
   animation-delay: 0.3s;
 }
-
 .sound-visualizer.playing .bar:nth-child(4) {
   animation-delay: 0.45s;
 }
@@ -202,61 +184,140 @@ body {
   }
 }
 
-/* Station Info - Left aligned */
-.station-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
+/* Static effect */
+.sound-visualizer.static .bar {
+  animation: staticNoise 0.1s linear infinite !important;
+  background: linear-gradient(to top, #95a5a6, #bdc3c7) !important;
+  box-shadow: none !important;
 }
 
-.live-badge {
-  color: #ff4757;
-  font-size: 9px;
-  font-weight: 700;
-  font-family: "Space Grotesk", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
-  transition: all 0.3s ease;
+@keyframes staticNoise {
+  0% {
+    height: 25%;
+    opacity: 0.6;
+  }
+  25% {
+    height: 75%;
+    opacity: 0.9;
+  }
+  50% {
+    height: 40%;
+    opacity: 0.7;
+  }
+  75% {
+    height: 85%;
+    opacity: 0.8;
+  }
+  100% {
+    height: 30%;
+    opacity: 0.6;
+  }
 }
 
-.live-badge.offline {
-  color: #95a5a6;
-  text-shadow: 0 0 10px rgba(149, 165, 166, 0.3);
-}
-
-#station-name {
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 13px;
-  font-weight: 500;
-  font-family: "Space Grotesk", sans-serif;
-  line-height: 1.3;
-  max-width: 250px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Right side - Controls */
-.audio-right {
+/* Floating Controls - Sits Below Bar, Half Outside Viewport */
+.audio-floating-controls {
+  position: fixed;
+  bottom: -18px; /* Half of chip height (36px / 2) goes below viewport */
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 8px;
+  z-index: 101; /* Above bar so always clickable */
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 6px 10px;
+  height: 36px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Station Controls */
+.audio-floating-controls:hover {
+  background: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Toggle Button - Minimal */
+.audio-toggle-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+.audio-toggle-btn:hover {
+  color: white;
+}
+
+.audio-toggle-btn .material-icons {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.audio-toggle-btn.active .material-icons {
+  transform: rotate(180deg);
+}
+
+/* Audio Controls - Simple Expandable Bar */
+.audio-controls {
+  position: fixed;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.85),
+    rgba(20, 20, 20, 0.85)
+  );
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px 16px 0 0;
+  padding: 24px 28px 42px; /* Extra bottom padding for chip overlap, more horizontal space */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px; /* Increased gap for better spacing */
+  align-items: center;
+  z-index: 100;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.6);
+  min-width: 540px;
+  max-width: 680px;
+  transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.audio-controls.expanded {
+  bottom: 0;
+}
+
+/* When expanded, chip stays at same position - bar's bottom edge cuts through chip center */
+.audio-controls.expanded ~ .audio-floating-controls {
+  bottom: -18px; /* 50% inside bar, 50% below viewport */
+  transform: translateX(-50%);
+}
+
+/* Music Controls (Left) */
+.audio-left {
+  display: flex;
+  align-items: center;
+}
+
 .station-controls {
   display: flex;
-  align-items: center;
   gap: 8px;
 }
 
 .control-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
-  padding: 6px;
+  padding: 8px;
   color: white;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -266,8 +327,8 @@ body {
 }
 
 .control-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
 }
 
@@ -279,22 +340,79 @@ body {
   font-size: 20px;
 }
 
-/* Volume Controls */
-.volume-controls {
+.play-pause-btn {
+  background: rgba(74, 144, 226, 0.2);
+  border-color: rgba(74, 144, 226, 0.3);
+}
+
+.play-pause-btn:hover {
+  background: rgba(74, 144, 226, 0.35);
+  border-color: rgba(74, 144, 226, 0.5);
+}
+
+/* Station Info (Center) */
+.audio-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.station-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.live-badge {
+  color: #ff4757;
+  font-size: 8px;
+  font-weight: 700;
+  font-family: "Space Grotesk", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  text-shadow: 0 0 8px rgba(255, 71, 87, 0.5);
+  white-space: nowrap;
+}
+
+.live-badge.offline {
+  color: #95a5a6;
+  text-shadow: 0 0 8px rgba(149, 165, 166, 0.3);
+}
+
+#station-name {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: "Space Grotesk", sans-serif;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Volume Controls (Right) */
+.audio-right {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
+.volume-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .volume-icon {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
 }
 
 #volume-slider {
-  width: 100px;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.2);
+  width: 90px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
   outline: none;
   border-radius: 10px;
   appearance: none;
@@ -303,12 +421,12 @@ body {
 
 #volume-slider::-webkit-slider-thumb {
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   background: linear-gradient(135deg, #4a90e2, #7ec8ff);
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.5);
+  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.5);
   transition: transform 0.2s ease;
 }
 
@@ -317,30 +435,25 @@ body {
 }
 
 #volume-slider::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   background: linear-gradient(135deg, #4a90e2, #7ec8ff);
   border-radius: 50%;
   cursor: pointer;
   border: none;
-  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.5);
-  transition: transform 0.2s ease;
-}
-
-#volume-slider::-moz-range-thumb:hover {
-  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.5);
 }
 
 .volume-value {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 10px;
   font-weight: 600;
   font-family: "Space Grotesk", sans-serif;
-  min-width: 35px;
+  min-width: 32px;
   text-align: right;
 }
 
-/* Subtle Info Button - Bottom Right Corner */
+/* Info Button */
 .info-btn {
   position: fixed;
   bottom: 20px;
@@ -371,13 +484,10 @@ body {
   font-size: 18px;
 }
 
-/* Credits Modal Overlay */
+/* Credits Modal */
 .credits-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(10px);
   display: none;
@@ -393,7 +503,6 @@ body {
   opacity: 1;
 }
 
-/* Credits Modal */
 .credits-modal {
   background: linear-gradient(
     135deg,
@@ -433,30 +542,22 @@ body {
   color: white;
 }
 
-.close-btn .material-icons {
-  font-size: 18px;
-}
-
 .credits-modal h2 {
-  margin-top: 0;
+  margin: 0 0 8px;
   font-family: "Space Grotesk", sans-serif;
   font-size: 22px;
-  margin-bottom: 8px;
-  color: #fff;
 }
 
 .credits-modal > p {
   color: rgba(255, 255, 255, 0.7);
   font-size: 13px;
-  margin-top: 0;
-  margin-bottom: 25px;
+  margin: 0 0 25px;
 }
 
 .credits-modal h3 {
   font-family: "Space Grotesk", sans-serif;
   font-size: 16px;
-  margin-top: 25px;
-  margin-bottom: 12px;
+  margin: 25px 0 12px;
   color: #7ec8ff;
 }
 
@@ -478,7 +579,6 @@ body {
 .station-credits strong {
   display: block;
   margin-bottom: 4px;
-  color: rgba(255, 255, 255, 0.95);
 }
 
 .station-credits a {
@@ -505,189 +605,19 @@ body {
 }
 
 .disclaimer p {
-  margin: 0 0 10px 0;
+  margin: 0 0 10px;
 }
 
 .disclaimer p:last-child {
-  margin-bottom: 0;
+  margin: 0;
   color: rgba(255, 255, 255, 0.85);
 }
 
-/* Scrollbar styling for modal */
-.credits-modal::-webkit-scrollbar {
-  width: 6px;
-}
-
-.credits-modal::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 3px;
-}
-
-.credits-modal::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 3px;
-}
-
-.credits-modal::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .audio-controls {
-    min-width: auto;
-    max-width: 90vw;
-    flex-direction: column;
-    gap: 15px;
-    padding: 15px 18px;
-  }
-
-  .audio-left {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .audio-right {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  #station-name {
-    font-size: 11px;
-    max-width: 180px;
-  }
-
-  .sound-visualizer {
-    height: 20px;
-  }
-
-  .sound-visualizer .bar {
-    width: 3px;
-  }
-
-  #volume-slider {
-    width: 80px;
-  }
-
-  .volume-value {
-    font-size: 10px;
-    min-width: 30px;
-  }
-
-  .info-btn {
-    bottom: 15px;
-    right: 15px;
-    width: 32px;
-    height: 32px;
-  }
-
-  .info-btn .material-icons {
-    font-size: 16px;
-  }
-
-  .credits-modal {
-    max-width: 90vw;
-    padding: 30px 25px;
-    max-height: 90vh;
-  }
-
-  .credits-modal h2 {
-    font-size: 20px;
-  }
-
-  .credits-modal h3 {
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .audio-controls {
-    bottom: 10px;
-    padding: 12px 15px;
-  }
-
-  .audio-right {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  #station-name {
-    font-size: 10px;
-    max-width: 150px;
-  }
-
-  .volume-controls {
-    gap: 8px;
-  }
-
-  #volume-slider {
-    width: 100px;
-  }
-
-  .credits-modal {
-    padding: 25px 20px;
-  }
-
-  .station-credits li {
-    font-size: 12px;
-  }
-
-  .disclaimer {
-    font-size: 10px;
-  }
-
-  .imprint-footer {
-    bottom: 5px;
-  }
-
-  .imprint-footer a {
-    font-size: 9px;
-  }
-}
-.sound-visualizer.static .bar {
-  width: 4px !important;
-  animation: staticNoise 0.1s linear infinite !important;
-  background: linear-gradient(to top, #95a5a6, #bdc3c7) !important;
-  box-shadow: none !important;
-}
-
-@keyframes staticNoise {
-  0% {
-    height: 25%;
-    opacity: 0.6;
-  }
-  25% {
-    height: 75%;
-    opacity: 0.9;
-  }
-  50% {
-    height: 40%;
-    opacity: 0.7;
-  }
-  75% {
-    height: 85%;
-    opacity: 0.8;
-  }
-  100% {
-    height: 30%;
-    opacity: 0.6;
-  }
-}
-
-/* Disable button during station switching */
-.control-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* Subtle Imprint Footer */
+/* Imprint Footer */
 .imprint-footer {
   position: fixed;
   bottom: 8px;
   left: 40px;
-  transform: translateX(-50%);
   z-index: 5;
   opacity: 0.6;
   transition: opacity 0.3s ease;
@@ -698,16 +628,147 @@ body {
 }
 
 .imprint-footer a {
-  color: rgba(255, 255, 255);
+  color: white;
   text-decoration: none;
   font-size: 12px;
   font-family: "Space Grotesk", sans-serif;
   letter-spacing: 0.5px;
   text-transform: lowercase;
-  transition: color 0.3s ease;
 }
 
-.imprint-footer a:hover {
-  color: rgba(255, 255, 255, 0.9);
-  text-decoration: underline;
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .audio-controls {
+    min-width: auto;
+    max-width: 95vw; /* Wider for better space utilization */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 16px; /* More space between sections */
+    padding: 20px 24px 38px; /* Bottom padding for chip */
+  }
+
+  .audio-left {
+    order: 1;
+    justify-content: center;
+  }
+  .audio-center {
+    order: 2;
+  }
+  .audio-right {
+    order: 3;
+    justify-content: center;
+    margin-bottom: 8px; /* Extra space above chip */
+  }
+
+  .station-info {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #station-name {
+    font-size: 12px;
+    max-width: 260px;
+    text-align: center;
+  }
+
+  .live-badge {
+    font-size: 7px;
+  }
+
+  #volume-slider {
+    width: 140px;
+  }
+
+  .audio-floating-controls {
+    bottom: -16px; /* Half of 32px chip height below viewport */
+    padding: 5px 8px;
+    height: 32px;
+  }
+
+  .sound-visualizer {
+    height: 18px;
+    width: 22px;
+  }
+
+  .sound-visualizer .bar {
+    width: 3px;
+  }
+
+  .audio-toggle-btn .material-icons {
+    font-size: 16px;
+  }
+
+  .audio-controls.expanded ~ .audio-floating-controls {
+    bottom: -16px; /* Stays at same position - 50% below viewport */
+  }
+
+  .credits-modal {
+    max-width: 90vw;
+    padding: 30px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .audio-controls {
+    max-width: 96vw; /* Nearly full width */
+    padding: 18px 20px 36px; /* Bottom padding for chip */
+    gap: 14px;
+  }
+
+  .audio-right {
+    width: 100%;
+    margin-bottom: 10px; /* Extra space above chip */
+  }
+
+  .volume-controls {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .station-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  #station-name {
+    font-size: 11px;
+    max-width: 200px;
+  }
+
+  #volume-slider {
+    width: 160px; /* Wider slider */
+  }
+
+  .control-btn {
+    padding: 6px;
+  }
+
+  .control-btn .material-icons {
+    font-size: 18px;
+  }
+
+  .audio-floating-controls {
+    bottom: -14px; /* Half of 28px chip height below viewport */
+    padding: 4px 7px;
+    height: 28px;
+  }
+
+  .sound-visualizer {
+    height: 16px;
+    width: 20px;
+    gap: 2px;
+  }
+
+  .sound-visualizer .bar {
+    width: 2px;
+  }
+
+  .audio-controls.expanded ~ .audio-floating-controls {
+    bottom: -14px; /* Stays at same position - 50% below viewport */
+  }
+
+  .credits-modal {
+    padding: 25px 20px;
+  }
 }
