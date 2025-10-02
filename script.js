@@ -49,19 +49,23 @@ document.addEventListener("DOMContentLoaded", () => {
       type: "lofi",
     },
     {
-      name: "🧠 Alpha Waves - Relaxed Focus",
-      url: "https://ice1.somafm.com/dronezone-128-mp3",
+      name: "🧠 Alpha Waves (8-14 Hz) - Relaxed Focus",
+      url: "https://www.youtube.com/watch?v=WPni755-Krg", // YouTube streams don't work directly - using meditation station
+      url: "https://ice1.somafm.com/dronezone-128-mp3", // Ambient drone music for relaxation
       type: "brainwave",
+      description: "Alpha waves for calm, relaxed alertness",
     },
     {
-      name: "🎯 Beta Waves - Active Focus",
-      url: "https://stream.radioparadise.com/mellow-128",
+      name: "🎯 Beta Waves (14-30 Hz) - Active Focus",
+      url: "https://ice1.somafm.com/spacestation-128-mp3", // Ambient space music for concentration
       type: "brainwave",
+      description: "Beta waves for concentration and active thinking",
     },
     {
-      name: "💡 Theta Waves - Creativity",
-      url: "https://ice1.somafm.com/deepspaceone-128-mp3",
+      name: "💡 Theta Waves (4-8 Hz) - Deep Meditation",
+      url: "https://ice1.somafm.com/deepspaceone-128-mp3", // Deep ambient for meditation
       type: "brainwave",
+      description: "Theta waves for deep relaxation and creativity",
     },
     {
       name: "📻 Local Music - Offline Fallback",
@@ -75,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
   gongSound.volume = 0.7;
 
   const staticSound = new Audio("test audio/tv-static-323620.mp3");
-  staticSound.volume = 0.3;
+  staticSound.volume = 0.1;
 
   // Initialize audio
   function initializeAudio() {
@@ -85,8 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     playMusic.volume = volumeSlider.value / 100;
 
     stationNameDisplay.textContent = station.name;
-    volumeValue.textContent = volumeSlider.value + "%";
-    staticSound.volume = Math.min((volumeSlider.value / 100) * 0.4, 0.4);
+    staticSound.volume = Math.min((volumeSlider.value / 100) * 0.15, 0.15);
 
     liveBadge.textContent = station.isLocal ? "📻 OFFLINE" : "● LIVE";
     liveBadge.classList.toggle("offline", station.isLocal);
@@ -126,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         staticSound.pause();
         staticSound.currentTime = 0;
-        staticSound.volume = Math.min((volumeSlider.value / 100) * 0.4, 0.4);
+        staticSound.volume = Math.min((volumeSlider.value / 100) * 0.15, 0.15);
         soundVisualizer.classList.remove("static");
         isSwitchingStation = false;
       }, 200);
@@ -292,8 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const vol = e.target.value / 100;
     playMusic.volume = vol;
     gongSound.volume = Math.min(vol + 0.3, 1);
-    staticSound.volume = Math.min(vol * 0.4, 0.4);
-    volumeValue.textContent = e.target.value + "%";
+    staticSound.volume = Math.min(vol * 0.15, 0.15);
   });
 
   playMusic.addEventListener("error", () => {

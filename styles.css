@@ -132,14 +132,15 @@ body {
   text-transform: lowercase;
 }
 
-/* Sound Visualizer */
+/* Sound Visualizer - Below Arrow */
 .sound-visualizer {
   display: flex;
   align-items: flex-end;
   gap: 3px;
-  height: 20px;
-  padding: 2px;
+  height: 16px; /* Smaller */
+  padding: 0;
   width: 24px;
+  order: 2; /* Below arrow */
 }
 
 .sound-visualizer .bar {
@@ -214,21 +215,23 @@ body {
   }
 }
 
-/* Floating Controls - Sits Below Bar, Half Outside Viewport */
+/* Floating Controls - Arrow on Top, Half Below Viewport */
 .audio-floating-controls {
   position: fixed;
-  bottom: -18px; /* Half of chip height (36px / 2) goes below viewport */
+  bottom: -18px; /* Half of chip height goes below viewport */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  flex-direction: column; /* Stack vertically */
   align-items: center;
-  gap: 8px;
-  z-index: 101; /* Above bar so always clickable */
+  justify-content: flex-start;
+  gap: 0;
+  z-index: 101;
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 20px;
-  padding: 6px 10px;
+  padding: 3px 10px 6px; /* Less top padding for arrow positioning */
   height: 36px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -240,7 +243,7 @@ body {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Toggle Button - Minimal */
+/* Toggle Button - At Top of Chip */
 .audio-toggle-btn {
   background: transparent;
   border: none;
@@ -250,7 +253,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2px;
+  padding: 0;
+  margin-bottom: 1px;
+  order: 1;
 }
 
 .audio-toggle-btn:hover {
@@ -258,7 +263,7 @@ body {
 }
 
 .audio-toggle-btn .material-icons {
-  font-size: 18px;
+  font-size: 16px;
   transition: transform 0.3s ease;
 }
 
@@ -410,7 +415,7 @@ body {
 }
 
 #volume-slider {
-  width: 90px;
+  width: 110px; /* Wider */
   height: 4px;
   background: rgba(255, 255, 255, 0.15);
   outline: none;
@@ -431,7 +436,7 @@ body {
 }
 
 #volume-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 #volume-slider::-moz-range-thumb {
@@ -442,15 +447,16 @@ body {
   cursor: pointer;
   border: none;
   box-shadow: 0 2px 6px rgba(74, 144, 226, 0.5);
+  transition: transform 0.2s ease;
 }
 
+#volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Hide volume percentage */
 .volume-value {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 10px;
-  font-weight: 600;
-  font-family: "Space Grotesk", sans-serif;
-  min-width: 32px;
-  text-align: right;
+  display: none;
 }
 
 /* Info Button */
@@ -640,11 +646,12 @@ body {
 @media (max-width: 768px) {
   .audio-controls {
     min-width: auto;
-    max-width: 95vw; /* Wider for better space utilization */
+    max-width: 92vw; /* WIDER */
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
-    gap: 16px; /* More space between sections */
-    padding: 20px 24px 38px; /* Bottom padding for chip */
+    gap: 20px; /* More space */
+    padding: 24px 28px 40px;
+    bottom: -300px; /* Hide completely on mobile when collapsed */
   }
 
   .audio-left {
@@ -657,36 +664,63 @@ body {
   .audio-right {
     order: 3;
     justify-content: center;
-    margin-bottom: 8px; /* Extra space above chip */
+    margin-bottom: 8px;
+  }
+
+  /* BIGGER BUTTONS */
+  .control-btn {
+    padding: 12px; /* BIGGER touch targets */
+  }
+
+  .control-btn .material-icons {
+    font-size: 24px; /* BIGGER icons */
   }
 
   .station-info {
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
   }
 
+  /* BIGGER TEXT */
   #station-name {
-    font-size: 12px;
-    max-width: 260px;
+    font-size: 14px; /* BIGGER */
+    max-width: 280px;
     text-align: center;
   }
 
   .live-badge {
-    font-size: 7px;
+    font-size: 8px;
   }
 
+  /* BIGGER VOLUME SLIDER */
   #volume-slider {
-    width: 140px;
+    width: 180px; /* MUCH WIDER */
+    height: 6px; /* THICKER */
   }
 
+  #volume-slider::-webkit-slider-thumb {
+    width: 18px; /* BIGGER thumb */
+    height: 18px;
+  }
+
+  #volume-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+  }
+
+  .volume-icon {
+    font-size: 22px; /* BIGGER icon */
+  }
+
+  /* Floating chip */
   .audio-floating-controls {
-    bottom: -16px; /* Half of 32px chip height below viewport */
-    padding: 5px 8px;
+    bottom: -16px;
+    padding: 3px 8px 5px;
     height: 32px;
   }
 
   .sound-visualizer {
-    height: 18px;
+    height: 14px;
     width: 22px;
   }
 
@@ -695,11 +729,11 @@ body {
   }
 
   .audio-toggle-btn .material-icons {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .audio-controls.expanded ~ .audio-floating-controls {
-    bottom: -16px; /* Stays at same position - 50% below viewport */
+    bottom: -16px;
   }
 
   .credits-modal {
@@ -710,14 +744,15 @@ body {
 
 @media (max-width: 480px) {
   .audio-controls {
-    max-width: 96vw; /* Nearly full width */
-    padding: 18px 20px 36px; /* Bottom padding for chip */
-    gap: 14px;
+    max-width: 94vw; /* EVEN WIDER */
+    padding: 22px 24px 38px;
+    gap: 18px;
+    bottom: -350px; /* Hide completely on small mobile when collapsed */
   }
 
   .audio-right {
     width: 100%;
-    margin-bottom: 10px; /* Extra space above chip */
+    margin-bottom: 10px;
   }
 
   .volume-controls {
@@ -725,37 +760,56 @@ body {
     justify-content: center;
   }
 
-  .station-info {
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-  }
-
-  #station-name {
-    font-size: 11px;
-    max-width: 200px;
-  }
-
-  #volume-slider {
-    width: 160px; /* Wider slider */
-  }
-
+  /* EVEN BIGGER BUTTONS */
   .control-btn {
-    padding: 6px;
+    padding: 14px; /* EVEN BIGGER */
   }
 
   .control-btn .material-icons {
-    font-size: 18px;
+    font-size: 26px; /* EVEN BIGGER icons */
   }
 
+  .station-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* BIGGER TEXT ON SMALL SCREENS */
+  #station-name {
+    font-size: 13px;
+    max-width: 220px;
+  }
+
+  /* MUCH BIGGER SLIDER */
+  #volume-slider {
+    width: 200px; /* ALMOST FULL WIDTH */
+    height: 8px; /* EVEN THICKER */
+  }
+
+  #volume-slider::-webkit-slider-thumb {
+    width: 20px; /* EVEN BIGGER thumb */
+    height: 20px;
+  }
+
+  #volume-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+  }
+
+  .volume-icon {
+    font-size: 24px; /* EVEN BIGGER */
+  }
+
+  /* Floating chip */
   .audio-floating-controls {
-    bottom: -14px; /* Half of 28px chip height below viewport */
-    padding: 4px 7px;
+    bottom: -14px;
+    padding: 2px 7px 5px;
     height: 28px;
   }
 
   .sound-visualizer {
-    height: 16px;
+    height: 12px;
     width: 20px;
     gap: 2px;
   }
@@ -764,8 +818,12 @@ body {
     width: 2px;
   }
 
+  .audio-toggle-btn .material-icons {
+    font-size: 13px;
+  }
+
   .audio-controls.expanded ~ .audio-floating-controls {
-    bottom: -14px; /* Stays at same position - 50% below viewport */
+    bottom: -14px;
   }
 
   .credits-modal {

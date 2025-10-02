@@ -42,11 +42,11 @@ Perfect for coding, studying, and creative work
 
 #### **Brainwave Frequencies** (Stations 4-6)
 
-Scientifically-designed frequencies for optimal focus
+Ambient music stations designed for focus and relaxation
 
-- **🧠 Alpha Waves (8-12Hz)** - Relaxed alertness, reading, light studying
-- **🎯 Beta Waves (13-30Hz)** - Active focus, problem-solving, concentration
-- **💡 Theta Waves (4-8Hz)** - Creativity, brainstorming, ideation
+- **🧠 Alpha Waves (8-14 Hz)** - Relaxed alertness, calm focus (SomaFM Drone Zone - ambient space music)
+- **🎯 Beta Waves (14-30 Hz)** - Active concentration, problem-solving (SomaFM Space Station - ambient electronic)
+- **💡 Theta Waves (4-8 Hz)** - Deep meditation, creativity (SomaFM Deep Space One - deep ambient)
 
 #### **Offline Mode** (Station 7)
 
@@ -124,14 +124,14 @@ pomodoro-lofi-app/
 
 All stations are **ad-free**, **high-quality streams** from respected broadcasters:
 
-| Station                     | Type        | URL                                            | Support                                                        |
-| --------------------------- | ----------- | ---------------------------------------------- | -------------------------------------------------------------- |
-| **101.ru - Lofi Hip Hop**   | Lofi        | [101.ru](https://101.ru)                       | -                                                              |
-| **Nightride FM**            | Lofi        | [nightride.fm](https://nightride.fm)           | -                                                              |
-| **SomaFM - Groove Salad**   | Lofi        | [somafm.com](https://somafm.com)               | [Support SomaFM](https://somafm.com/support/)                  |
-| **SomaFM - Drone Zone**     | Alpha Waves | [somafm.com](https://somafm.com)               | [Support SomaFM](https://somafm.com/support/)                  |
-| **Radio Paradise**          | Beta Waves  | [radioparadise.com](https://radioparadise.com) | [Become a Supporter](https://radioparadise.com/listen/support) |
-| **SomaFM - Deep Space One** | Theta Waves | [somafm.com](https://somafm.com)               | [Support SomaFM](https://somafm.com/support/)                  |
+| Station                     | Type        | URL                                  | Support                                       |
+| --------------------------- | ----------- | ------------------------------------ | --------------------------------------------- |
+| **101.ru - Lofi Hip Hop**   | Lofi        | [101.ru](https://101.ru)             | -                                             |
+| **Nightride FM**            | Lofi        | [nightride.fm](https://nightride.fm) | -                                             |
+| **SomaFM - Groove Salad**   | Lofi        | [somafm.com](https://somafm.com)     | [Support SomaFM](https://somafm.com/support/) |
+| **SomaFM - Drone Zone**     | Alpha Waves | [somafm.com](https://somafm.com)     | [Support SomaFM](https://somafm.com/support/) |
+| **SomaFM - Space Station**  | Beta Waves  | [somafm.com](https://somafm.com)     | [Support SomaFM](https://somafm.com/support/) |
+| **SomaFM - Deep Space One** | Theta Waves | [somafm.com](https://somafm.com)     | [Support SomaFM](https://somafm.com/support/) |
 
 > **Note:** This app provides links to publicly available internet radio streams. We do not host, modify, or claim ownership of any audio content. Please consider supporting these amazing stations!
 
