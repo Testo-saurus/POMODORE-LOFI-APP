@@ -12,14 +12,13 @@ body {
 
 #background-video {
   position: fixed;
-  bottom: 0;
-  left: 50%;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  transform: translateX(-50%);
   object-fit: cover;
-  object-position: center bottom;
+  object-position: center center;
 }
 
 .interactive-section {
@@ -489,6 +488,59 @@ body {
   font-size: 18px;
 }
 
+/* Video Toggle Button - Upper Right */
+.video-toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  box-shadow: none;
+}
+
+.video-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-1px);
+}
+
+.video-toggle-btn .material-icons {
+  font-size: 16px;
+}
+
+.video-btn-text {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Space Grotesk", sans-serif;
+  text-transform: lowercase;
+  opacity: 0.9;
+}
+
+/* Active state - minimal styling, no colors */
+.video-toggle-btn.active {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.video-toggle-btn.active:hover {
+  background: rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.85);
+}
+
 /* Credits Modal */
 .credits-overlay {
   position: fixed;
@@ -739,6 +791,21 @@ body {
     max-width: 90vw;
     padding: 30px 25px;
   }
+
+  .video-toggle-btn {
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    gap: 3px;
+  }
+
+  .video-toggle-btn .material-icons {
+    font-size: 14px;
+  }
+
+  .video-btn-text {
+    font-size: 11px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -827,5 +894,20 @@ body {
 
   .credits-modal {
     padding: 25px 20px;
+  }
+
+  .video-toggle-btn {
+    top: 12px;
+    right: 12px;
+    padding: 4px 8px;
+    gap: 3px;
+  }
+
+  .video-toggle-btn .material-icons {
+    font-size: 13px;
+  }
+
+  .video-btn-text {
+    font-size: 10px;
   }
 }

@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const liveBadge = document.getElementById("live-badge");
   const audioControls = document.getElementById("audio-controls");
   const audioToggle = document.getElementById("audio-toggle");
+  const videoToggleBtn = document.getElementById("video-toggle-btn");
+  const backgroundVideo = document.getElementById("background-video");
 
   // Audio
   const audioStations = [
@@ -328,6 +330,64 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Video background toggle
+  let currentVideoIndex = 0;
+  const videoSources = [
+    { name: "Coworking Space", path: "videos/coworking.mp4" },
+    { name: "Asian Store 4K", path: "videos/asianstore4k.mp4" },
+  ];
+
+  function switchBackgroundVideo() {
+    // Toggle between videos
+    currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+    const newVideo = videoSources[currentVideoIndex];
+
+    // Update video source
+    backgroundVideo.src = newVideo.path;
+    backgroundVideo.load();
+
+    // Play from beginning
+    backgroundVideo.play().catch(console.error);
+
+    // Update button state
+    videoToggleBtn.classList.toggle("active", currentVideoIndex === 1);
+
+    // Update button tooltip
+    videoToggleBtn.title = `Switch to ${
+      videoSources[(currentVideoIndex + 1) % videoSources.length].name
+    }`;
+
+    // Save preference to localStorage
+    localStorage.setItem("preferredVideo", currentVideoIndex);
+  }
+
+  // Event listener for video toggle
+  if (videoToggleBtn) {
+    videoToggleBtn.addEventListener("click", switchBackgroundVideo);
+  }
+
+  // Load saved video preference on startup
+  function loadVideoPreference() {
+    const savedVideoIndex = localStorage.getItem("preferredVideo");
+    if (savedVideoIndex !== null) {
+      currentVideoIndex = parseInt(savedVideoIndex);
+
+      // Load preferred video
+      backgroundVideo.src = videoSources[currentVideoIndex].path;
+      backgroundVideo.load();
+      backgroundVideo.play().catch(console.error);
+
+      // Update button state
+      videoToggleBtn.classList.toggle("active", currentVideoIndex === 1);
+      videoToggleBtn.title = `Switch to ${
+        videoSources[(currentVideoIndex + 1) % videoSources.length].name
+      }`;
+    } else {
+      // No saved preference, just play the default video
+      backgroundVideo.play().catch(console.error);
+    }
+  }
+
   // Initialize
   initializeAudio();
   updateDisplay();
@@ -335,5 +395,5 @@ document.addEventListener("DOMContentLoaded", () => {
   highlightModeButton(currentMode);
   updateResetButton();
   updatePlayPauseButton();
-  document.getElementById("background-video").play().catch(console.error);
+  loadVideoPreference();
 });
