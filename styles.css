@@ -12,15 +12,14 @@ body {
 
 #background-video {
   position: fixed;
-  top: 50%;
+  bottom: 0;
   left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  width: 100vw;
+  height: 100vh;
   z-index: -1;
-  transform: translate(-50%, -50%);
-  background-size: contain;
+  transform: translateX(-50%);
+  object-fit: cover;
+  object-position: center bottom;
 }
 
 .interactive-section {
@@ -47,7 +46,7 @@ body {
   color: #fff;
   text-align: center;
   vertical-align: middle;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
   border: 1px solid #fff;
   border-radius: 500px;
   transition: all 0.15s ease-in-out;
